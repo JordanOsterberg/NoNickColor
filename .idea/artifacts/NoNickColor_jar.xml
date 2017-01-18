@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="NoNickColor:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/NoNickColor_jar</output-path>
+    <root id="archive" name="NoNickColor.jar">
+      <element id="module-output" name="NoNickColor" />
+    </root>
+  </artifact>
+</component>
