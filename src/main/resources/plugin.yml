@@ -1,0 +1,3 @@
+name: NoNickColor
+version: ${project.version}
+main: tech.shadowsystems.nonickcolor.NoNickColor
