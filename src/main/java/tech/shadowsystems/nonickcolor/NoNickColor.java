@@ -15,7 +15,8 @@ public final class NoNickColor extends JavaPlugin implements Listener {
         this.getConfig().options().copyDefaults(true);
         this.saveDefaultConfig();
 
-        if (this.getConfig().getConfigurationSection("errorMessage") == null) {
+        if (this.getConfig().getString("errorMessage") == null) {
+            getLogger().warning("errorMessage has been reset to default because it didn't exist before.");
             this.getConfig().set("errorMessage", "&cYou can only change the color of your nickname.");
             this.saveConfig();
         }
@@ -30,8 +31,10 @@ public final class NoNickColor extends JavaPlugin implements Listener {
     public void onNickChange(NickChangeEvent event) {
         Player affected = event.getAffected().getBase();
         if (!ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', event.getValue())).toLowerCase().equals(affected.getName().toLowerCase())) {
-            event.setCancelled(true);
-            affected.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("errorMessage")));
+            if (!affected.hasPermission("nonickcolor.bypass")) {
+                event.setCancelled(true);
+                affected.sendMessage(ChatColor.translateAlternateColorCodes('&', getConfig().getString("errorMessage")));
+            }
         }
     }
 
